@@ -1,0 +1,68 @@
+.user-form-container {
+    max-width: 600px;
+    margin: 5% auto;
+    padding: 20px;
+    background: linear-gradient(to top right, #d2dac3, #e09797);
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.user-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+label.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+#username,
+#password,
+#user-code{
+    width: 97%;
+    padding: 8px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.checkbox-group label {
+    margin-right: 15px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+button {
+    padding: 8px 15px;
+    border-radius: 3px;
+    border: none;
+    background: #0d808f;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+button:hover {
+    background: #0b5d7a;
+}

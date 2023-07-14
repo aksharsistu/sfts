@@ -1,15 +1,16 @@
 {
   "name": "sfts",
-  "version": "0.1.0",
-  "private": true,
+  "version": "3.0.0",
+  "private": false,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-router-dom": "^6.14.1",
+    "axios": "^1.4.0",
+    "react-app-polyfill": "^3.0.0",
+    "core-js": "^3.31.1",
+    "babel-es6-polyfill": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -27,7 +28,10 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "firefox 48",
+      "chrome 49",
+      "opera 36"
     ],
     "development": [
       "last 1 chrome version",
