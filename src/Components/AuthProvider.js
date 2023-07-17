@@ -12,12 +12,33 @@ export const AuthProvider = ({children}) => {
     const [access, setAccess] = useState('000000000')
     const [stageName, setStageName] = useState('')
     const [placeName, setPlaceName] = useState('')
+    const [jsonData, setJsonData] = useState([]);
     const navigate = useNavigate()
     const BASE_URL = 'http://' + backendIp + ':8000/'
 
     useEffect(() => {
         getStage()
+        fetchData()
     }, [])
+
+    const getStage = async () => {
+        try {
+            const response = await axios.get(BASE_URL + 'stage/get/')
+            const {stageName, placeName} = response.data
+            setStageName(stageName)
+            setPlaceName(placeName)
+        } catch (err) {
+            console.error(err)
+        }
+    }
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(BASE_URL + 'process/get/');
+            setJsonData(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const login = async (e) => {
         e.preventDefault()
@@ -33,7 +54,7 @@ export const AuthProvider = ({children}) => {
             navigate('/')
         } catch (err) {
             console.error(err)
-            alert(err)
+            alert(err.response.data)
         }
     }
 
@@ -42,16 +63,7 @@ export const AuthProvider = ({children}) => {
         setAccess('000000000')
     }
 
-    const getStage = async () => {
-        try {
-            const response = await axios.get(BASE_URL + 'stage/get/')
-            const {stageName, placeName} = response.data
-            setStageName(stageName)
-            setPlaceName(placeName)
-        } catch (err) {
-            console.error(err)
-        }
-    }
+
 
     // Backend sends 9 digit access code with the following information:
     const parseAccess = {
@@ -75,7 +87,9 @@ export const AuthProvider = ({children}) => {
         backendIp: backendIp,
         BASE_URL: BASE_URL,
         stageName: stageName,
-        placeName: placeName
+        placeName: placeName,
+        jsonData: jsonData,
+        fetchData: fetchData
     }
 
     return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>

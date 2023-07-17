@@ -179,8 +179,8 @@ const RegisterUser = () => {
                     </div>
                 </div>
                 <div className="button-group">
-                    <button type="submit">Submit</button>
-                    <button type="button" onClick={handleDelete}>
+                    <button type="submit" className='register-button'>Submit</button>
+                    <button type="button" onClick={handleDelete} className='register-button'>
                         Delete
                     </button>
                 </div>
