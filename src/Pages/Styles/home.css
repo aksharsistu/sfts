@@ -29,7 +29,7 @@ select.home-select {
 }
 
 input[type="checkbox"].home-checkbox {
-    margin: 5px;
+    margin: auto 5px;
 }
 
 button.home-button {
@@ -49,3 +49,21 @@ option.home-option {
     padding: 10px;
 }
 
+.qa-input {
+    width: 15px;
+}
+
+.batch {
+    height: 100px;
+    overflow-y: scroll;
+    width: 200px;
+    border: solid black 2px;
+    padding: 3px;
+    border-radius: 3px;
+}
+
+.group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

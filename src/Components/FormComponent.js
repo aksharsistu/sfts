@@ -1,6 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
+/**
+ *
+ * @param apiUrl Backend base URl
+ * @param formName Title of the form
+ * @param fields Fields along with labels. Field name will be used to parse backend data sent by the server.
+ * So it should be same as the Model field names in Django
+ * @param tableHeaders Headers of the table
+ * @returns {JSX.Element} A Form with a table on the side.
+ */
 const FormComponent = ({apiUrl, formName, fields, tableHeaders}) => {
     const [formData, setFormData] = useState({});
     const [data, setData] = useState([]);

@@ -4,48 +4,34 @@ import axios from "axios";
 
 
 const End = () => {
-    const {stageName, placeName, BASE_URL} = useContext(AuthContext)
+    const {stageName, placeName, BASE_URL, jsonData: processNos} = useContext(AuthContext)
 
     const [barcode, setBarcode] = useState('');
     const [message, setMessage] = useState('')
-    const [processNoOptions, setProcessNoOptions] = useState([]);
     const [selectedProcessNo, setSelectedProcessNo] = useState('');
     const [productCode, setProductCode] = useState('');
     const [reject, setReject] = useState(false)
     const [rejectionCode, setRejectionCode] = useState('')
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(BASE_URL + 'process/get/');
-                const options = await response.data;
-                setProcessNoOptions(options);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-        fetchData();
-    }, [BASE_URL]);
-
-    useEffect(() => {
         const fetchDetails = () => {
             try {
                 let index = 0
-                while (processNoOptions[index].processNo !== selectedProcessNo) {
+                while (processNos[index].processNo !== selectedProcessNo) {
                     index++
                 }
-                setProductCode(processNoOptions[index].productCode_id)
+                setProductCode(processNos[index].productCode_id)
             } catch (err) {
                 console.error(err)
             }
         }
         fetchDetails()
-    }, [processNoOptions, selectedProcessNo])
+    }, [processNos, selectedProcessNo])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setMessage('success... or maybe not')
-
+        setMessage('response from backend')
+        // Send to backend for logging
     };
 
     return (
@@ -63,7 +49,7 @@ const End = () => {
                         required
                     >
                         <option value="">Select a process number</option>
-                        {processNoOptions.map((option) => (
+                        {processNos.map((option) => (
                             <option key={option.processNo} value={option.processNo}>
                                 {option.processNo}
                             </option>

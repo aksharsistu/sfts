@@ -1,5 +1,6 @@
 import React from "react";
 
+// When other than the listed frontend URLs are accessed.
 export default function NoPage() {
     return <>
         <h3>Sorry...</h3>

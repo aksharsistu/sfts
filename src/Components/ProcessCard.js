@@ -2,14 +2,20 @@ import React, {useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import AuthContext from "./AuthProvider";
 
+/**
+ *
+ * @param processNo Process No.
+ * @param BASE_URL Backend URL
+ * @returns {JSX.Element} A table containing different sub-stages and checkboxes to show enabled/disabled status
+ */
 const StageCard = ({processNo, BASE_URL}) => {
-    const [jsonData, setJsonData] = useState([]);
+    const [stageData, setStageData] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.post(BASE_URL + 'process/card/', {processNo: processNo});
-                setJsonData(response.data);
+                setStageData(response.data);
             } catch (error) {
                 console.log(error);
             }
@@ -30,7 +36,7 @@ const StageCard = ({processNo, BASE_URL}) => {
         </tr>
         </thead>
         <tbody>
-        {jsonData.map((item) => (
+        {stageData.map((item) => (
             <tr key={item.processCardNo}>
                 <td>{item.processCardNo}</td>
                 <td><input type="checkbox" disabled checked={item.start}/></td>
@@ -45,9 +51,15 @@ const StageCard = ({processNo, BASE_URL}) => {
     </table>
 }
 
-const ProcessCard = () => {
-    const {BASE_URL, jsonData, fetchData} = useContext(AuthContext)
 
+/**
+ *
+ * @returns {JSX.Element} A table containing details regarding all the processes in the database.
+ */
+const ProcessCard = () => {
+    const {BASE_URL, processNos, fetchData} = useContext(AuthContext)
+
+    // Sends request to delete an entry in the process database
     const deleteRow = async (processNo) => {
         try {
             await axios.post(BASE_URL + `process/delete/`, {processNo: processNo});
@@ -74,7 +86,7 @@ const ProcessCard = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {jsonData.map((item) => (
+                {processNos.map((item) => (
                     <tr key={item.processNo}>
                         <td>{item.processNo}</td>
                         <td>{item.date}</td>

@@ -6,6 +6,7 @@ import ProcessCard from "../Components/ProcessCard";
 
 const Process = () => {
     const {BASE_URL, fetchData} = useContext(AuthContext)
+
     const [processId, setProcessId] = useState([]);
     const [lineNo, setLineNo] = useState([])
     const [start, setStart] = useState([false, false, false, false, false, false])

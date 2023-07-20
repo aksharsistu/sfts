@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 import './navbar.css';
 import AuthContext from "./AuthProvider";
 
+/**
+ *
+ * @returns {JSX.Element} Header/Navigation Bar for the entire webpage.
+ * @description Enables/Disables buttons to access webpages based on the access key.
+ */
 const NavBar = () => {
     const {username, access} = useContext(AuthContext)
 

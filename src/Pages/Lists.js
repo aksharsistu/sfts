@@ -3,6 +3,11 @@ import FormComponent from '../Components/FormComponent';
 import AuthContext from "../Components/AuthProvider";
 import './Styles/lists.css'
 
+/**
+ * @description Collection of 4 FormComponent s to make a webpage for editing data.
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Lists = () => {
     const {BASE_URL} = useContext(AuthContext)
 

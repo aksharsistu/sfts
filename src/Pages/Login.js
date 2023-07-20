@@ -2,6 +2,11 @@ import React, {useContext} from 'react'
 import './Styles/login.css'
 import AuthContext from "../Components/AuthProvider";
 
+/**
+ *
+ * @returns {JSX.Element} Login page of the website
+ * @constructor
+ */
 const Login = () => {
     const {login, backendIp, setBackendIp} = useContext(AuthContext)
 

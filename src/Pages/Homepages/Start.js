@@ -2,11 +2,12 @@ import React, {useContext, useEffect, useState} from 'react';
 import AuthContext from "../../Components/AuthProvider";
 
 const App = () => {
-    const {stageName, placeName, BASE_URL, jsonData} = useContext(AuthContext)
+    const {stageName, placeName, BASE_URL, processNos} = useContext(AuthContext)
 
     const [selectedProcessNo, setSelectedProcessNo] = useState('');
     const [productCode, setProductCode] = useState('');
     const [barcode, setBarcode] = useState('');
+    const [permanentBarcode, setPermanentBarcode] = useState('')
     const [message, setMessage] = useState('')
 
 
@@ -14,23 +15,22 @@ const App = () => {
         const fetchDetails = () => {
             try {
                 let index = 0
-                while (jsonData[index].processNo !== selectedProcessNo) {
+                while (processNos[index].processNo !== selectedProcessNo) {
                     index++
                 }
-                setProductCode(jsonData[index].productCode_id)
+                setProductCode(processNos[index].productCode_id)
             } catch (err) {
                 console.error(err)
             }
         }
         fetchDetails()
-    }, [jsonData, selectedProcessNo])
+    }, [processNos, selectedProcessNo])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setMessage('success... or maybe not')
-        // Process the form submission here
-        // You can access the selectedProcessNo, productCode, stage, and barcode values
-        // and send them to the backend or perform any other desired actions
+        setMessage('response from backend')
+        // Send to backend for logging
+
     };
 
     return (
@@ -48,7 +48,7 @@ const App = () => {
                         required
                     >
                         <option value="">Select a process number</option>
-                        {jsonData.map((option) => (
+                        {processNos.map((option) => (
                             <option key={option.processNo} value={option.processNo}>
                                 {option.processNo}
                             </option>
@@ -85,6 +85,19 @@ const App = () => {
                         className='home-text'
                         maxLength={12}
                         required
+                    />
+                </div>
+                <div>
+                    <label>Permanent Barcode: (for packaging)</label>
+                    <input
+                        id="barcode"
+                        type="text"
+                        value={permanentBarcode}
+                        onChange={(e) => setPermanentBarcode(e.target.value)}
+                        className='home-text'
+                        maxLength={13}
+                        disabled={!stageName.includes('PCK')}
+                        required={stageName.includes('PCK')}
                     />
                 </div>
                 <button type="submit" className='home-button'>Submit</button>

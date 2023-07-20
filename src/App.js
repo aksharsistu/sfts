@@ -12,6 +12,25 @@ import StageAssign from "./Pages/StageAssign";
 import Lists from "./Pages/Lists";
 import Process from "./Pages/Process";
 
+
+/**
+ *
+ * @description Uses BrowserRoutes to redirect to a respective component on the change of URL by the NavBar component.
+ * List of frontend URLs:
+ * index: / ;
+ * /login;
+ * /start;
+ * /end;
+ * /qa;
+ * /rework;
+ * /logout;
+ * /users;
+ * /stages;
+ * /lists;
+ * /processes;
+ * /<others> : redirects to a NoPage
+ */
+
 function App() {
     return <BrowserRouter>
         <AuthProvider>

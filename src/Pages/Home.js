@@ -5,6 +5,10 @@ import End from "./Homepages/End";
 import QA from "./Homepages/QA";
 import Rework from "./Homepages/Rework";
 
+/** Home page containing instructions by default and redirects to Start/End/QA/Rework components when
+ * @param process is specified in App.js in the Browser Routes
+ * @returns {JSX.Element}
+ */
 const Home = ({process}) => {
   if (process === 'start') {
     return <Start/>
